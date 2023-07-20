@@ -5,8 +5,9 @@ const MyPage = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [inputedCity, setInputedCity] = useState('');
   const [error, setError] = useState('');
+
   const getWeatherData = () => {
-    let URL = `https://api.openweathermap.org/data/2.5/weather?q=${inputedCity}&appid=045d22c917a325e8b4c2855770ec9f4e`;
+    let URL = `https://api.openweathermap.org/data/2.5/weather?q=${inputedCity}&appid=b998ee614b240707fb150975399370c9`;
     axios
       .get(URL)
       .then(response => {
@@ -24,18 +25,8 @@ const MyPage = () => {
   const handleInput = (e) => {
     setInputedCity(e.target.value);
   };
-  const weatherImages = {
-    '01d': 'https://openweathermap.org/img/wn/01d.png', // Clear day
-    '02d': 'https://openweathermap.org/img/wn/02d.png', // Few clouds
-    '03d': 'https://openweathermap.org/img/wn/03d.png', // Scattered clouds
-    '04d': 'https://openweathermap.org/img/wn/04d.png', // Broken clouds
-    '09d': 'https://openweathermap.org/img/wn/09d.png', // Shower rain
-    '10d': 'https://openweathermap.org/img/wn/10d.png', // Rain
-    '11d': 'https://openweathermap.org/img/wn/11d.png', // Thunderstorm
-    '13d': 'https://openweathermap.org/img/wn/13d.png', // Snow
-    '50d': 'https://openweathermap.org/img/wn/50d.png', // Mist
-    // Add more condition codes and image URLs as needed
-  };
+
+  const weatherIconUrl = 'https://openweathermap.org/img/wn/';
 
   return (
     <div>
@@ -44,10 +35,16 @@ const MyPage = () => {
       {error && <p>Error: {error}</p>}
       {weatherData && weatherData.weather && weatherData.weather.length > 0 && (
         <div>
-          <p>City: {weatherData.name}</p>
+          <div>
+            <p>{weatherData.name}</p>
+            <p>{weatherData.sys.country}</p>
+            <p style={{ textTransform: 'capitalize' }}>tempreture: {weatherData.main.temp.toFixed()} °f</p>
+          </div>
           <p>Weather: {weatherData.weather[0].description}</p>
-           <img src={weatherImages[weatherData.weather[0].icon]} alt="Weather Icon" />
+          <img src={`${weatherIconUrl}${weatherData.weather[0].icon}.png`} alt="Weather Icon" />
           <p>Humidity: {weatherData.main.humidity}%</p>
+          <p style={{ textTransform: 'capitalize' }}>min: {weatherData.main.temp_min.toFixed()} °f</p>
+          <p style={{ textTransform: 'capitalize' }}>max: {weatherData.main.temp_max.toFixed()} °f</p>
         </div>
       )}
     </div>
