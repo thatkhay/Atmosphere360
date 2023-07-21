@@ -47,17 +47,17 @@ const MyPage = () => {
           
           <div style={{ display: 'grid' , gap: '1rem', alignItems: 'center', justifyContent: 'center', gridTemplateColumns: 'repeat(3, 1fr )', marginTop: '5rem', width:'100%', textAlign: 'center'}}>
        
-      <div style={{ textTransform: 'capitalize', backgroundColor: 'black', color: 'white', padding: '0 0 7px 0' }}> 
+      <div style={{ textTransform: 'capitalize', backgroundColor: 'black', color: 'white', padding: '0 0 7px 0', borderRadius: '1rem' }}> 
             <p>Humidity:  </p>
-            {weatherData.main.humidity}%
+             <p> {weatherData.main.humidity}%</p>
         </div>
-          <div style={{ textTransform: 'capitalize', backgroundColor: 'black', color: 'white', padding: '0 0 7px 0' }}>
+          <div style={{ textTransform: 'capitalize', backgroundColor: 'black', color: 'white', padding: '0 0 7px 0', borderRadius: '1rem' }}>
             <p>min: </p> 
-            {weatherData.main.temp_min.toFixed()} °f
+            <p>{weatherData.main.temp_min.toFixed()} °f </p>
             </div>
-          <div style={{ textTransform: 'capitalize', backgroundColor: 'black', color: 'white', padding: '0 0 7px 0' }}>
+          <div style={{ textTransform: 'capitalize', backgroundColor: 'black', color: 'white', padding: '0 0 7px 0', borderRadius: '1rem' }}>
             <p> max: </p>
-            {weatherData.main.temp_max.toFixed()} °f
+             <p>{weatherData.main.temp_max.toFixed()} °f</p>
             </div>
           </div>
      
