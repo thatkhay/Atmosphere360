@@ -7,7 +7,7 @@ const MyPage = () => {
   const [error, setError] = useState('');
 
   const getWeatherData = () => {
-    let URL = `https://api.openweathermap.org/data/2.5/weather?q=${inputedCity}&appid=b998ee614b240707fb150975399370c9`;
+    let URL = `https://api.openweathermap.org/data/2.5/weather?q=${inputedCity}&units=imperial&appid=b998ee614b240707fb150975399370c9`;
     axios
       .get(URL)
       .then(response => {
@@ -29,22 +29,38 @@ const MyPage = () => {
   const weatherIconUrl = 'https://openweathermap.org/img/wn/';
 
   return (
-    <div>
-      <input type="text" value={inputedCity} onChange={handleInput} />
-      <button onClick={getWeatherData}>click me</button>
-      {error && <p>Error: {error}</p>}
+    <div className='container' style={{ padding: '0 1rem' }}>
+      <div style={{marginTop: '3rem' , display: 'flex' , alignItems: 'center', flexDirection:'column', justifyContent: 'space-between', height: '6rem'}}>
+      <input type="text" value={inputedCity} onChange={handleInput}  style={{ height:'2rem', borderRadius: '1rem', width: '60%', padding: '0 1rem', fontWeight: '700', textTransform:'capitalize', border: '2px solid gray'}}/>
+      <button style={{ textTransform:'capitalize', height: '2rem', color: 'white', backgroundColor: 'black', borderRadius: '.6rem' }} onClick={getWeatherData}>get weather</button>
+      </div>
+
+      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
       {weatherData && weatherData.weather && weatherData.weather.length > 0 && (
         <div>
-          <div>
-            <p>{weatherData.name}</p>
-            <p>{weatherData.sys.country}</p>
-            <p style={{ textTransform: 'capitalize' }}>tempreture: {weatherData.main.temp.toFixed()} °f</p>
+          <div style={{ display: 'flex' , alignItems: 'center', justifyContent: 'center', fontSize: '2rem', fontWeight: '900' }}>
+            <p>{weatherData.name}, </p>  
+            <span style={{ marginLeft: '.4rem' }}>{weatherData.sys.country}</span>
           </div>
-          <p>Weather: {weatherData.weather[0].description}</p>
-          <img src={`${weatherIconUrl}${weatherData.weather[0].icon}.png`} alt="Weather Icon" />
-          <p>Humidity: {weatherData.main.humidity}%</p>
-          <p style={{ textTransform: 'capitalize' }}>min: {weatherData.main.temp_min.toFixed()} °f</p>
-          <p style={{ textTransform: 'capitalize' }}>max: {weatherData.main.temp_max.toFixed()} °f</p>
+          <img style={{ height: '7rem', width: '7rem' }} src={`${weatherIconUrl}${weatherData.weather[0].icon}.png`} alt="Weather Icon" />
+          <p style={{ textTransform: 'capitalize', fontSize: '1.5rem', fontWeight: '700'  }}>feels like: {weatherData.main.temp.toFixed()} °f</p>
+          
+          <div style={{ display: 'grid' , gap: '1rem', alignItems: 'center', justifyContent: 'center', gridTemplateColumns: 'repeat(3, 1fr )', marginTop: '5rem', width:'100%', textAlign: 'center'}}>
+       
+      <div style={{ textTransform: 'capitalize', backgroundColor: 'black', color: 'white', padding: '0 0 7px 0' }}> 
+            <p>Humidity:  </p>
+            {weatherData.main.humidity}%
+        </div>
+          <div style={{ textTransform: 'capitalize', backgroundColor: 'black', color: 'white', padding: '0 0 7px 0' }}>
+            <p>min: </p> 
+            {weatherData.main.temp_min.toFixed()} °f
+            </div>
+          <div style={{ textTransform: 'capitalize', backgroundColor: 'black', color: 'white', padding: '0 0 7px 0' }}>
+            <p> max: </p>
+            {weatherData.main.temp_max.toFixed()} °f
+            </div>
+          </div>
+     
         </div>
       )}
     </div>

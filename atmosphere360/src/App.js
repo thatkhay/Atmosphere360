@@ -4,7 +4,7 @@ import MyPage from './pages/MyPage';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" >
       <MyPage/>
     </div>
   );
