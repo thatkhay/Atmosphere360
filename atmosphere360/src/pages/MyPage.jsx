@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import '../index.css'
 const MyPage = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [inputedCity, setInputedCity] = useState('');
@@ -14,6 +14,7 @@ const MyPage = () => {
         setWeatherData(response.data);
         setError('');
         console.log(response.data);
+        setInputedCity('')
       })
       .catch(error => {
         console.error('Error fetching weather data:', error);
@@ -30,8 +31,8 @@ const MyPage = () => {
 
   return (
     <div className='container' style={{ padding: '0 1rem' }}>
-      <div style={{marginTop: '3rem' , display: 'flex' , alignItems: 'center', flexDirection:'column', justifyContent: 'space-between', height: '6rem'}}>
-      <input type="text" value={inputedCity} onChange={handleInput}  style={{ height:'2rem', borderRadius: '1rem', width: '60%', padding: '0 1rem', fontWeight: '700', textTransform:'capitalize', border: '2px solid gray'}}/>
+      <div style={{marginTop: '3rem' , display: 'flex' , alignItems: 'center', flexDirection:'column', justifyContent: 'space-between', height: '6rem', width: 'auto'}}>
+      <input  type="text" value={inputedCity} onChange={handleInput}  style={{ height:'2.5rem', borderRadius: '1rem', width: '20rem', fontWeight: '700', textTransform:'capitalize', border: '2px solid gray'}}/>
       <button style={{ textTransform:'capitalize', height: '2rem', color: 'white', backgroundColor: 'black', borderRadius: '.6rem' }} onClick={getWeatherData}>get weather</button>
       </div>
 
@@ -45,10 +46,10 @@ const MyPage = () => {
           <img style={{ height: '7rem', width: '7rem' }} src={`${weatherIconUrl}${weatherData.weather[0].icon}.png`} alt="Weather Icon" />
           <p style={{ textTransform: 'capitalize', fontSize: '1.5rem', fontWeight: '700'  }}>feels like: {weatherData.main.temp.toFixed()} °f</p>
           
-          <div style={{ display: 'grid' , gap: '1rem', alignItems: 'center', justifyContent: 'center', gridTemplateColumns: 'repeat(3, 1fr )', marginTop: '5rem', width:'100%', textAlign: 'center'}}>
+          <div  className='otherInfo' style={{ display: 'grid' , gap: '1rem', alignItems: 'center', justifyContent: 'center', gridTemplateColumns: 'repeat(3, 1fr )', marginTop: '5rem', width:'100%', textAlign: 'center'}}>
        
       <div style={{ textTransform: 'capitalize', backgroundColor: 'black', color: 'white', padding: '0 0 7px 0', borderRadius: '1rem' }}> 
-            <p>Humidity:  </p>
+            <p>Humidity  </p>
              <p> {weatherData.main.humidity}%</p>
         </div>
           <div style={{ textTransform: 'capitalize', backgroundColor: 'black', color: 'white', padding: '0 0 7px 0', borderRadius: '1rem' }}>

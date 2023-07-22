@@ -12,3 +12,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+@media (min-width: 851px) {
+  .container {
+   background-color: rgb(7, 192, 248);
+  height: 100vh;
+   width: 100%;
+    
+  }
+}

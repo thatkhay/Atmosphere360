@@ -4,7 +4,7 @@ import MyPage from './pages/MyPage';
 
 function App() {
   return (
-    <div className="App" >
+    <div className="App" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <MyPage/>
     </div>
   );
