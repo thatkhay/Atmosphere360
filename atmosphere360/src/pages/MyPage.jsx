@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../index.css'
+import WeatherInput from '../components/WeatherInput';
 const MyPage = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [inputedCity, setInputedCity] = useState('');
@@ -31,10 +32,9 @@ const MyPage = () => {
 
   return (
     <div className='container' style={{ padding: '0 1rem' }}>
-      <div style={{marginTop: '3rem' , display: 'flex' , alignItems: 'center', flexDirection:'column', justifyContent: 'space-between', height: '6rem', width: 'auto'}}>
-      <input  type="text" value={inputedCity} onChange={handleInput}  style={{ height:'2.5rem', borderRadius: '1rem', width: '20rem', fontWeight: '700', textTransform:'capitalize', border: '2px solid gray'}}/>
-      <button style={{ textTransform:'capitalize', height: '2rem', color: 'white', backgroundColor: 'black', borderRadius: '.6rem' }} onClick={getWeatherData}>get weather</button>
-      </div>
+
+      <WeatherInput value={inputedCity} onChange={handleInput} onClick={getWeatherData} />
+   
 
       {error && <p style={{ color: 'red' }}>Error: {error}</p>}
       {weatherData && weatherData.weather && weatherData.weather.length > 0 && (
