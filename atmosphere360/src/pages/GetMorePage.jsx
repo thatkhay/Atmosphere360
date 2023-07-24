@@ -30,10 +30,10 @@ const GetMorePage = () => {
 
   return (
     
-    <div className='containerTwo' style={{ padding: '0 1rem', display: 'flex', alignItems: 'center', justifyContent: 'center'  }}>
+    <div className='containerTwo' style={{ padding: '0 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexDirection: 'column'  }}>
         {error && <p style={{ color: 'red' }}>Error: {error}</p>}
       {weatherData && weatherData.weather && weatherData.weather.length > 0 && (
-        <div style={{ width: '40rem'}}>
+        <div style={{ width: '25rem'}}>
           <div style={{ display: 'flex' , alignItems: 'center', justifyContent: 'center', fontSize: '2rem', fontWeight: '900' }}>
             <p>{weatherData.name}, </p>  
             <span style={{ marginLeft: '.4rem' }}>{weatherData.sys.country}</span>
@@ -71,6 +71,7 @@ const GetMorePage = () => {
             </div>
         </div>
       )}
+   
     </div>
   );
 };
