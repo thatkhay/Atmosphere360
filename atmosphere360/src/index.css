@@ -17,8 +17,15 @@ code {
 @media (min-width: 851px) {
   .container {
    background-color: rgb(7, 192, 248);
-  height: 120vh;
+  height: 110vh;
    width: 100%;
+    
+  }
+  .containerTwo {
+   background-color: rgb(40, 127, 153);
+  height: auto;
+  
+  width: 100%;
     
   }
 }
